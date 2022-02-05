@@ -44,6 +44,30 @@ public class Figures {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Figures figures = (Figures) o;
+
+        if (Double.compare(figures.square, square) != 0) return false;
+        if (Double.compare(figures.perimeter, perimeter) != 0) return false;
+        return name.equals(figures.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = name.hashCode();
+        temp = Double.doubleToLongBits(square);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(perimeter);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
+    }
+
+    @Override
     public String toString() {
         return "Figures{" +
                 "name='" + name + '\'' +
